@@ -5,7 +5,7 @@ URL = 'https://api.fitbit.com'
 
 def getHeaders():
 
-    readToken = open("lib/api/refreshToken","r")
+    readToken = open("lib/api/refreshToken.rt","r")
     refreshToken = readToken.read()
     GET_BEARER = '/oauth2/token'
     api_url = URL + GET_BEARER
@@ -26,10 +26,8 @@ def getHeaders():
     responseObj = json.loads(response.content)
 
     if(responseObj['refresh_token']):  
-        saveToken = open("lib/api/refreshToken","w")
+        saveToken = open("lib/api/refreshToken.rt","w")
         saveToken.write(responseObj['refresh_token'])
-
-    print(responseObj)
 
     return {
         'Authorization': ('Bearer {0}').format(responseObj['access_token'])
@@ -41,7 +39,7 @@ def apiRequest(uri, opts, reqType):
     headers = getHeaders()
 
     print("\nPOST TO : " + uri)
-    print("HEADERS : " + json.dumps(headers))
+    #print("HEADERS : " + json.dumps(headers))
     print("ARGS : " + json.dumps(opts) + "\n")
         
     postUrl = URL + uri
