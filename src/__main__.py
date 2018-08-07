@@ -4,12 +4,8 @@ import time
 def main():
     while True:
         heartRate = controllers.getCurrentHeartRate()
-        print(heartRate)
-        print("bum bum")
-        time.sleep(heartRate/60)
-
-
-print(controllers.getCurrentHeartRate())
-
+        for i in range(30):
+            controllers.performHeartAction()
+            time.sleep(heartRate/60)
 
 main()

@@ -1,6 +1,8 @@
 import lib.api.controllers as API
 import datetime
 
+defaultHeartRate = 60
+
 def getHourlyHeartRates():
     now = datetime.datetime.now()
 
@@ -19,5 +21,10 @@ def getHourlyHeartRates():
 def getCurrentHeartRate():
 
     rates = getHourlyHeartRates()
-    
-    return rates[len(rates) - 1]['value']
+    if(len(rates) > 0):
+        return rates[len(rates) - 1]['value']
+    else:
+        return defaultHeartRate
+
+def performHeartAction():
+    print('Bum Bum')
