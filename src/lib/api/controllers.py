@@ -25,9 +25,12 @@ def getHeaders():
 
     responseObj = json.loads(response.content)
 
-    if(responseObj['refresh_token']):  
+    try:
+        newRefreshToken = responseObj['refresh_token']
         saveToken = open("lib/api/refreshToken.rt","w")
-        saveToken.write(responseObj['refresh_token'])
+        saveToken.write(newRefreshToken)
+    except:
+        return responseObj
 
     return {
         'Authorization': ('Bearer {0}').format(responseObj['access_token'])
