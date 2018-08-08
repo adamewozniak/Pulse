@@ -6,6 +6,6 @@ def main():
         heartRate = controllers.getCurrentHeartRate()
         for i in range(30):
             controllers.performHeartAction()
-            time.sleep(heartRate/60)
+            time.sleep(60/heartRate)
 
 main()
